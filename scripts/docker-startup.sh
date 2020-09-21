@@ -18,9 +18,9 @@ test $i -gt $MAXCOUNT && echo "Timeout while waiting for PostgreSQL to be runnin
 case "$1" in
 import)
   # Creating default database
-  psql -c "SELECT 1 FROM pg_database WHERE datname = 'gis';" | grep -q 1 || createdb gis && \
-  psql -d gis -c 'CREATE EXTENSION IF NOT EXISTS postgis;' && \
-  psql -d gis -c 'CREATE EXTENSION IF NOT EXISTS hstore;' && \
+  psql -c "SELECT 1 FROM pg_database WHERE datname = 'neos';" | grep -q 1 || createdb neos && \
+  psql -d neos -c 'CREATE EXTENSION IF NOT EXISTS postgis;' && \
+  psql -d neos -c 'CREATE EXTENSION IF NOT EXISTS hstore;' && \
 
   # Creating default import settings file editable by user and passing values for osm2pgsql
   if [ ! -e ".env" ]; then
@@ -44,7 +44,7 @@ EOF
   --number-processes $OSM2PGSQL_NUMPROC \
   --hstore \
   --multi-geometry \
-  --database gis \
+  --database neos \
   --slim \
   --drop \
   --style openstreetmap-carto.style \
